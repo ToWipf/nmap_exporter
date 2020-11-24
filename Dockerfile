@@ -1,21 +1,6 @@
-#FROM alpine:3.6
-FROM debian:9
+FROM alpine:latest
 
-#RUN apk add --no-cache nginx-mod-http-lua nmap
-RUN apt-get update && apt-get install nginx libnginx-mod-http-lua nmap -y
-
-# Delete default config
-RUN rm -r /etc/nginx/conf.d && rm /etc/nginx/nginx.conf
-
-# Create folder for PID file
-RUN mkdir -p /run/nginx
-
-# Add our nginx conf
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-COPY scan.sh /scan.sh
-COPY scan.conf /etc/nginx/conf.d/scan.conf
-
-RUN chmod +x /scan.sh && chmod +x docker-entrypoint.sh
-
-CMD ["/docker-entrypoint.sh"]
+RUN apk update && apk add python2 py-pip nmap
+COPY ./nmap_exporter.py /
+EXPOSE 8085
+CMD ["python2", "/nmap_exporter.py"]
