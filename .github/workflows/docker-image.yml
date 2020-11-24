@@ -14,14 +14,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag docker.pkg.github.com/towipf/nmap_exporter:0.1
-
-    - name: Build the Docker image arm
-      run:  docker buildx build --platform linux/arm -t docker.pkg.github.com/towipf/nmap_exporter:0.1arm -f Dockerfile.arm .
-
-    - name: push Docker
-      run: docker push docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.1
-
-    - name: push Docker arm
-      run: docker push docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.1arm
+    - name: Build the Docker images
+      run: ./build.sh
