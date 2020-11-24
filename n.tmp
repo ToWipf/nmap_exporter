@@ -1,0 +1,9 @@
+# Nmap 7.80 scan initiated Tue Nov 24 18:58:28 2020 as: nmap -sP --host-timeout 1000 --max-retries 100 --dns-servers 192.168.2.3 -oG n.tmp 192.168.2.*
+Host: 192.168.2.3 (fritz.box)	Status: Up
+Host: 192.168.2.11 (Pi-hole11.fritz.box)	Status: Up
+Host: 192.168.2.12 ()	Status: Up
+Host: 192.168.2.48 (wipf-Aspire-VN7-572G.fritz.box)	Status: Up
+Host: 192.168.2.83 (JoFriA40.fritz.box)	Status: Up
+Host: 192.168.2.97 (Xoro9500ip.fritz.box)	Status: Up
+Host: 192.168.2.128 ()	Status: Up
+# Nmap done at Tue Nov 24 18:58:33 2020 -- 256 IP addresses (7 hosts up) scanned in 5.53 seconds

@@ -1,0 +1,7 @@
+FROM nginx
+
+COPY scan.sh /scan.sh
+COPY nginx.conf /etc/nginx/conf.d/scan.conf
+
+RUN chmod +x /scan.sh
+
