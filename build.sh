@@ -1,5 +1,5 @@
 #!/bin/bash
-apt install qemu-user
+sudo apt-get install qemu-user -y
 DOCKER_CLI_EXPERIMENTAL=enabled 
 
 docker build . --file Dockerfile --tag docker.pkg.github.com/towipf/nmap_exporter:0.1
