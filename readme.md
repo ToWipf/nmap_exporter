@@ -1,6 +1,6 @@
 # nmap exporter Prometheus
 
-# WORK IN PROGRESS! NOT RUNNING NOW
+WORK IN PROGRESS! NOT RUNNING NOW
 
 docker build -t nmap_exporter .
 
