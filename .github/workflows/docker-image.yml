@@ -12,7 +12,10 @@ jobs:
 
     runs-on: ubuntu-20.04
 
-    steps:
+    steps:          
+    - name: Log into registry
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      
     - uses: actions/checkout@v2
     - name: Build the Docker images
       run: ./build.sh
