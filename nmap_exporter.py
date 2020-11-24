@@ -19,35 +19,30 @@ def locate(file):
 
 def doScan(ip):
     # nmap -sP --host-timeout 1000 --max-retries 100 --dns-servers 192.168.2.3 192.168.2.* -oG n.tmp
-    ping_command = '{} -sP --host-timeout 1000 --max-retries 100 --dns-servers 192.168.2.3 {}'.format(filepath, ip)
-
-    output = []
-
     logger.info("START")
+    output = []
+    #ping_command = '{} -sP --host-timeout 1000 --max-retries 100 --dns-servers 192.168.2.3 {} -oG n.tmp'.format(filepath, ip)
+    ping_command = '{} -sP --host-timeout 1 --max-retries 1 --dns-servers 192.168.2.3 {} -oG n.tmp'.format(
+        "nmap", ip)
 
-    # Execute
-    cmd_output = subprocess.Popen(ping_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
+    # Execute and write output to file
+    subprocess.Popen(ping_command, stdout=subprocess.PIPE,
+                     shell=True).communicate()
+    # read file
+    cmd_output = str(subprocess.Popen(
+        "cat n.tmp", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()[0])
 
-    # # Parse
-    # try:
-    #     loss = cmd_output[1].split("%")[1].split("/")[2]
-    #     min = cmd_output[1].split("=")[2].split("/")[0]
-    #     avg = cmd_output[1].split("=")[2].split("/")[1]
-    #     max = cmd_output[1].split("=")[2].split("/")[2].split("\n")[0]
-    # except IndexError:
-    #     loss = 100
-    #     min = 0
-    #     avg = 0
-    #     max = 0
+    # Parse
+    for line in cmd_output.split("\n"):
+        if "#" not in line:
+            if line:
+                val = line.replace("\t", " ").split(" ")
+                out = "{ip=\"" + val[1] + "\",hostname=\"" + \
+                    val[2].replace("(", "").replace(")", "") + "\"}"
+                output.append("nmap_scan{} 1".format(out))
 
-    # # Gen metrics
-    # output.append("ping_avg {}".format(avg))
-    # output.append("ping_max {}".format(max))
-    # output.append("ping_min {}".format(min))
-    # output.append("ping_loss {}".format(loss))
-    # output.append('')
-    # return output
-    return cmd_output
+    output.append('')
+    return output
 
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
