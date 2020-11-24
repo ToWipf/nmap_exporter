@@ -16,3 +16,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag nmap_exporter:0.1
+
+    - name: Build the Docker image arm
+      run: docker build . --file Dockerfile_armv7 --tag nmap_exporter:0.1_arm
