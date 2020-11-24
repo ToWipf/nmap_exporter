@@ -11,4 +11,4 @@ while read line; do
     fi
 done <n.tmp
 
-# nmap_scan{ip="192.168.1.5",name="Beaus Phone"} 1
+# nmap_scan{ip="192.168.1.5",name="phone"} 1
