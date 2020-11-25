@@ -2,25 +2,19 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-20.04
 
-    steps:          
-    - name: Log into registry
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-      
-    - uses: actions/checkout@v2
+    steps:
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
-    - name: Build the Docker images
-      run: ./build.sh
+      - uses: actions/checkout@v2
 
-    - name: Build dockerimage_arm
-      run: docker buildx build --platform linux/arm -t docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.1arm -f Dockerfile.arm .
-
-    - name: Push dockerimage_arm
-      run: docker push docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.1arm
+      - name: Build and push the Docker images
+        run: ./build.sh
