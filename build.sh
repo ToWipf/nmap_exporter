@@ -16,7 +16,7 @@ docker buildx inspect --bootstrap
 echo "_______Build_______"
 docker build . --file Dockerfile --tag docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.1
 echo "_______Build arm_______"
-docker buildx build --load --platform linux/arm -t docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.1arm -f arm/Dockerfile.arm .
+docker buildx build --load --platform linux/arm -t docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.1arm -f arm/Dockerfile .
 echo "_______Push_______"
 docker push docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.1
 echo "_______Push arm_______"
