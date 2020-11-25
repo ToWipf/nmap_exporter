@@ -18,3 +18,9 @@ jobs:
 
     - name: Build the Docker images
       run: ./build.sh
+
+    - name: Build dockerimage_arm
+      run: docker buildx build --platform linux/arm -t docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.1arm -f Dockerfile.arm .
+
+    - name: Push dockerimage_arm
+      run: docker push docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.1arm
