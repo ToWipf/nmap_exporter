@@ -2,7 +2,7 @@
 
 Device scan for Prometheus
 
-![Bild](https://github.com/ToWipf/nmap_exporter/blob/main/grafana.jpg)
+![Bild](https://raw.githubusercontent.com/ToWipf/nmap_exporter/main/grafana.png)
 
 ## Build and Debug:
 ```sh
