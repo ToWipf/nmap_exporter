@@ -4,6 +4,10 @@ DOCKER_CLI_EXPERIMENTAL=enabled
 DOCKER_BUILDKIT=1
 BUILDX_NO_DEFAULT_LOAD=arm32v7
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+docker buildx create --name nubuilder
+docker buildx ls
+docker buildx use nubuilder
+docker buildx inspect --bootstrap
 
 echo "_______Build_______"
 docker build . --file Dockerfile --tag docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.1
