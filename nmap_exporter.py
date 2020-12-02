@@ -8,10 +8,10 @@ def doScan(ip, dns):
 
     # Execute and write output to file
     try:
-        check_output(ping_command, shell=True, timeout=5)
+        check_output(ping_command, shell=True, timeout=50)
     except Exception:
         pass
-        fout = "{ip=\"" + "scan_failed" + "\",hostname=\"" + "scan_failed"+ "\"}"
+        fout = "{ip=\"" + "scan_failed" + "\"}"
         output.append("nmap_scan{} 1".format(fout))
         return output
 
