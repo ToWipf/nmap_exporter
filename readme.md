@@ -31,3 +31,7 @@ Current: hardcoded for 192.168.2.*
 nmap_scan{ip="192.168.2.1",hostname="fritz.box"} 1
 nmap_scan{ip="192.168.2.42",hostname="device0815"} 1
 ```
+
+## View output in Grafana
+
+https://github.com/ToWipf/nmap_exporter/blob/main/panel.json
