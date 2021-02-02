@@ -1,6 +1,6 @@
-# nmap / Device exporter Prometheus
+# nmap / Device scan exporter Prometheus
 
-Device scan for Prometheus
+This Docker Container scans the Target Network on every request. Nmap has a host timeout with 10 sec. and is configured with five retries.
 
 ![Bild](https://raw.githubusercontent.com/ToWipf/nmap_exporter/main/grafana.png)
 
