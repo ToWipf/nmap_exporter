@@ -2,6 +2,8 @@
 
 This Docker Container scans the Target Network on every request. Nmap has a host timeout with 10 sec. and is configured with five retries.
 
+> `docker pull docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.2arm`
+
 ![Bild](https://raw.githubusercontent.com/ToWipf/nmap_exporter/main/grafana.png)
 
 ## Build and Debug:
