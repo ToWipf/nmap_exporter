@@ -1,4 +1,5 @@
 #!/bin/bash
+cp start.sh arm/start.sh
 sudo apt-get install qemu-user -y
 DOCKER_CLI_EXPERIMENTAL=enabled 
 DOCKER_BUILDKIT=1
@@ -11,11 +12,12 @@ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker buildx use nubuilder
 
 echo "_______Build_______"
-docker build . --file Dockerfile --tag docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.2.2
+docker build . --file Dockerfile --tag docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.2.4
 echo "_______Build arm_______"
-docker buildx build --load --platform linux/arm -t docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.2.2arm -f arm/Dockerfile .
+docker buildx build --load --platform linux/arm -t docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.2.4arm -f arm/Dockerfile .
 echo "_______Push_______"
-docker push docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.2.2
+docker push docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.2.4
 echo "_______Push arm_______"
-docker push docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.2.2arm
+docker push docker.pkg.github.com/towipf/nmap_exporter/nmap_exporter:0.2.4arm
 echo "_______FINISH_______"
+rm arm/start.sh
