@@ -4,7 +4,7 @@ from subprocess import check_output
 
 def doScan(ip, dns):
     output = []
-    ping_command = '/usr/bin/nmap -sP --host-timeout 10 --max-retries 2 --dns-servers {} {} -oG n.tmp'.format(dns, ip)
+    ping_command = '/usr/bin/nmap -sP --exclude 192.168.2.14 --host-timeout 10 --max-retries 2 --dns-servers {} {} -oG n.tmp'.format(dns, ip)
 
     # Execute and write output to file
     try:
